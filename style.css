@@ -1,0 +1,53 @@
+#msg{
+    color : red;
+    font-size : medium;
+}
+
+#playerList {
+    float: right;
+    clear: right;
+    overflow: hidden;
+} 
+
+
+#score {
+    float: right;
+    clear: right;
+    overflow: hidden;
+} 
+
+div p{
+    display: inline; 
+    font-size: large;
+}
+
+#me {
+    color : red;
+    font-weight: bold;
+}
+
+
+#tchat {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    margin: 20px;
+    background-color: #000000;
+    padding: 10px;
+}
+#tchat p{
+    color:#ffffff;
+}
+
+#msgIn    {
+    margin-bottom: 10px;
+}
+textarea {
+    background-color : white;
+    color : black;  
+}
+#tablierInfo{
+    overflow: hidden;
+    float: right;
+    clear: right;
+}

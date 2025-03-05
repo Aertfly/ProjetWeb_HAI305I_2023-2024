@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <title>Projet JS HAI305I 2023</title>
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="http://localhost:8888/fichier/script.js"></script>
+  <script src="https://d3js.org/d3.v5.min.js"></script>
+  <link rel="stylesheet" href="http://localhost:8888/fichier/style.css">
+</head>
+
+<body>
+  <ul id="playerList"></ul>
+  <div>
+    <h1>Bienvenue sur un jeu de simulation de la vie</h1>
+    <p>Nom de joueur :</p>
+    <p id="myName"></p>
+  </div>
+  <div>
+    <p id="msg"></p><br />
+    <input type="text" id="nameIn" placeholder="ex : Player547">
+    <button type="button" id="in" onclick="playerEnter()">Valider ?</button>
+    <button type="button" id="out" onclick="playerLeaving()" disabled hidden>Quitter ?</button>
+  </div>
+  <div id="parameters" style="display : none">
+    <div id="createGame" style="display : none">
+      <hr>
+      <p>Paramétrer la partie ?</p><br /><br />
+      <p>Nombre de joueur max :(par défaut 1) </p><input type='number' min="1" maw="4" id='nbPlayersMax'><br />
+      <p>Nombre de tours :(par défaut 10) </p><input type="number" min="1" id="nbTurns"><br />
+      <button onclick="createGame()">Changer Paramétres !</button>
+    </div>
+    <div id="createCreature">
+      <hr>
+      <p>Personaliser vos créatures !</p><br /><br />
+      <p>Nommer la !</p><input type="text" id="creatureName"><br />
+      <p id="pointLeft"></p><br />
+      <p>Force</p>
+      <p id="strengthValue">(1):</p>
+      <input type="range" value="1" min="1" id="strength" onchange="updateValue(this)"><br />
+      <p>Perception</p>
+      <p id="perceptionValue">(1):</p>
+      <input type="range" min="1" value="1" id="perception" onchange="updateValue(this)"><br />
+      <p>Taux de reproduction</p>
+      <p id="reproductionValue">(1):</p>
+      <input type="range" min="1" value="1" id="reproduction" onchange="updateValue(this)"><br />
+      <p id="warning" style="color: red; display: none" >Attention ! Attendez les autres joueurs avant de créer votre créature sinon la partie se lancera automatiquement</p><br />
+      <button onclick="createCreature()">Créer créature ?</button>
+    </div>
+  </div>
+  <div id="tablierInfo" style="display: none">
+    <p id="turn">Tour : 0</p><br />
+    <p style="color:green">case plaine</p><br />
+    <p style="color:blue">case lac</p><br />
+    <p style="color:gray">case rocher</p><br />
+    <p id="powerInfo">Pouvoir (3 charges restantes):</p><br />
+    <form>
+      <label>
+        <input type="radio" name="power" value="plain">
+        Faire fleurir une case
+      </label>
+      <label>
+        <input type="radio" name="power" value="sea">
+        Innonder une case
+      </label>
+      <label>
+        <input type="radio" name="power" value="mountain">
+        Réveiller la terre
+      </label>
+    </form>
+  </div>
+  <p id="winner"></p>
+    <ul id="score"></ul>
+  <div id="tablier"></div>
+  <div id="tchat">
+    <p>Envoyer un message :</p>
+    <form onsubmit='sendMessage(event)'>
+      <input type="text" id="msgIn">
+      <button type='submit'>Envoyer message ?</button>
+    </form>
+    <textarea id="msgOut" rows="10" cols="30" disabled></textarea>
+  </div>
+</body>
+
+</html>
